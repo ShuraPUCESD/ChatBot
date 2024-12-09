@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chatbot</title>
+</head>
+<body>
+
+<h1>Chatbot</h1>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Creación del botón del chatbot
+    var chatButtonCircle = document.createElement('div');
+    chatButtonCircle.style.position = 'fixed';
+    chatButtonCircle.style.bottom = '20px';
+    chatButtonCircle.style.right = '20px';
+    chatButtonCircle.style.width = '100px';
+    chatButtonCircle.style.height = '100px';
+    chatButtonCircle.style.backgroundColor = '#0073aa';
+    chatButtonCircle.style.borderRadius = '50%';
+    chatButtonCircle.style.display = 'flex';
+    chatButtonCircle.style.justifyContent = 'center';
+    chatButtonCircle.style.alignItems = 'center';
+    chatButtonCircle.style.color = '#ffffff';
+    chatButtonCircle.style.cursor = 'pointer';
+    chatButtonCircle.style.zIndex = '1000';
+
+    // Icono del botón
+    var chatButtonImage = document.createElement('img');
+    chatButtonImage.src = 'https://pucesd.edu.ec/wp-content/uploads/2024/11/MASCOTA_VIRTUAL.png';
+    chatButtonImage.style.width = '100%';
+    chatButtonImage.style.height = '100%';
+    chatButtonImage.style.borderRadius = '50%';
+    chatButtonCircle.appendChild(chatButtonImage);
+
+    // Mensaje de ayuda
+    var helpMessage = document.createElement('div');
+    helpMessage.textContent = 'Hola, soy Aurelio, estoy aquí para ayudarte 😊';
+    helpMessage.style.position = 'absolute';
+    helpMessage.style.bottom = '100px';
+    helpMessage.style.right = '100px';
+    helpMessage.style.backgroundColor = '#fff';
+    helpMessage.style.border = '3px solid #0073aa';
+    helpMessage.style.borderRadius = '8px';
+    helpMessage.style.padding = '5px 10px';
+    helpMessage.style.color = '#0073aa';
+    helpMessage.style.fontSize = '24px';
+    helpMessage.style.boxShadow = '0 0 40px rgba(0, 0, 0, 0.1)';
+    helpMessage.style.display = 'block';//posible animacion futura XD
+
+    // Añadir el botón y el mensaje al cuerpo
+    document.body.appendChild(chatButtonCircle);
+    document.body.appendChild(helpMessage);
+
+    // Crear un contenedor para el chat
+    var chatBox = document.createElement('div');
+    chatBox.style.position = 'fixed';
+    chatBox.style.bottom = '20px';
+    chatBox.style.right = '20px';
+    chatBox.style.width = '500px';
+    chatBox.style.height = '600px';
+    chatBox.style.border = '2px solid #ccc';
+    chatBox.style.borderRadius = '10px';
+    chatBox.style.backgroundColor = '#f9f9f9';
+    chatBox.style.overflow = 'hidden';
+    chatBox.style.display = 'none';
+    chatBox.style.flexDirection = 'column';
+    chatBox.style.zIndex = '1000';
+
+    // Título del chat
+    var chatHeader = document.createElement('div');
+    chatHeader.style.backgroundColor = '#0073aa';
+    chatHeader.style.color = '#ffffff';
+    chatHeader.style.padding = '15px';
+    chatHeader.style.fontSize = '20px';
+    chatHeader.style.textAlign = 'center';
+    chatHeader.style.display = 'flex';
+    chatHeader.style.justifyContent = 'center';
+    chatHeader.textContent = 'Aurelio';
+
+    var closeButton = document.createElement('span');
+    closeButton.textContent = 'X';
+    closeButton.style.fontSize = '20px';
+    closeButton.style.cursor = 'pointer';
+    closeButton.style.marginLeft = 'auto';
+    closeButton.style.padding = '0px 10px';
+    //funcion
+    closeButton.addEventListener('click', function() {
+      chatBox.style.display = 'none';
+      chatButtonCircle.style.display = 'flex';
+      helpMessage.style.display = 'block';
+    });
+    chatHeader.appendChild(closeButton);
+    chatBox.appendChild(chatHeader);
+
+    // Contenedor de mensajes
+    var chatContent = document.createElement('div');
+    chatContent.style.flex = '1';
+    chatContent.style.padding = '15px';
+    chatContent.style.overflowY = 'auto';
+    chatContent.style.fontSize = '20px';
+    chatBox.appendChild(chatContent);
+
+    // Area de mensajes, se muestran los mensajes que escriben los usuarios antes de enviarlo
+    var chatInput = document.createElement('input');
+    chatInput.type = 'text';
+    chatInput.placeholder = 'Escribe tu mensaje...';
+    chatInput.style.width = 'calc(100% - 20px)';
+    chatInput.style.margin = '5px';
+    chatInput.style.padding = '14px';
+    chatInput.style.border = '2px solid #ccc';
+    chatInput.style.borderRadius = '8px';
+
+    var chatSendButton = document.createElement('button');
+    chatSendButton.textContent = 'Enviar';
+    chatSendButton.style.margin = '5px';
+    chatSendButton.style.padding = '8px 12px';
+    chatSendButton.style.backgroundColor = '#0073aa';
+    chatSendButton.style.color = '#fff';
+    chatSendButton.style.borderRadius = '5px';
+    chatSendButton.style.cursor = 'pointer';
+
+    var chatInputContainer = document.createElement('div');
+    chatInputContainer.style.display = 'flex';
+    chatInputContainer.appendChild(chatInput);
+    chatInputContainer.appendChild(chatSendButton);
+    chatBox.appendChild(chatInputContainer);
+
+    // Diccionario de respuestas
+    var responses = {
+      "hola": "Estas en saludos",
+      "adios": "Hasta en despeddas",
+      "ayuda": "Estas en ayudas."
+    };
+
+    // Función para manejar el mensaje del usuario
+    function handleUserMessage() {
+      var userMessage = chatInput.value.trim().toLowerCase();
+      if (userMessage !== '') {
+        var messageElem = document.createElement('div');
+        messageElem.textContent = 'Tú: ' + userMessage;
+        messageElem.style.marginBottom = '10px';
+        messageElem.style.backgroundColor = '#7de8cf';
+        messageElem.style.borderRadius = '18px';
+        messageElem.style.padding = '14px';
+        chatContent.appendChild(messageElem);
+        chatInput.value = '';
+
+        // Encontrar la mejor coincidencia en el diccionario
+        var botResponse = findBestResponse(userMessage);
+
+        var botMessage = document.createElement('div');
+        botMessage.textContent = 'Aurelio: ' + botResponse;
+        botMessage.style.marginBottom = '10px';
+        botMessage.style.backgroundColor = '#e87daa';
+        botMessage.style.color = 'white';
+        botMessage.style.borderRadius = '18px';
+        botMessage.style.padding = '14px';
+        chatContent.appendChild(botMessage);
+
+        chatContent.scrollTop = chatContent.scrollHeight;
+      }
+    }
+
+    // Función para encontrar la mejor coincidencia en el diccionario
+    function findBestResponse(message) {
+      var bestMatch = "No se ha entendido, por favor repita su mensaje";
+      var maxSimilarity = 0;
+
+      for (var key in responses) {
+        var similarity = message.includes(key) ? 1 : 0;
+        if (similarity > maxSimilarity) {
+          maxSimilarity = similarity;
+          bestMatch = responses[key];
+        }
+      }
+      return bestMatch;
+    }
+
+    // Eventos para enviar el mensaje
+    chatSendButton.addEventListener('click', handleUserMessage);
+    chatInput.addEventListener('keypress', function(event) {
+      if (event.key === 'Enter') {
+        handleUserMessage();
+      }
+    });
+
+    // Mensaje inicial del bot
+    var botStartMessage = document.createElement('div');
+    botStartMessage.textContent = 'Aurelio: ¡Hola! Soy tu asistente virtual. ¿En qué puedo ayudarte hoy? 😊';
+    botStartMessage.style.marginBottom = '10px';
+    botStartMessage.style.backgroundColor = '#bdb2f1';
+    botStartMessage.style.borderRadius = '18px';
+    botStartMessage.style.padding = '14px';
+    botStartMessage.style.fontSize = '24px';
+    botStartMessage.style.color = 'white';
+    chatContent.appendChild(botStartMessage);
+
+    chatButtonCircle.addEventListener('click', function() {
+      if (chatBox.style.display === 'none') {
+        chatBox.style.display = 'flex';
+        chatButtonCircle.style.display = 'none';
+        helpMessage.style.display = 'none';
+      }
+    });
+
+    document.body.appendChild(chatBox);
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CHATBOT PRUEBAS</title>
+</head>
+<body>
+
+  <h1>CONTENEDOR DE MENSAJES</h1>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var containerchat = document.createElement("div");
+      containerchat.style.position = "fixed";
+      containerchat.style.width = "500px";
+      containerchat.style.height = "500px";
+      containerchat.style.borderRadius = "35px";
+      containerchat.style.backgroundColor = "white";
+      containerchat.style.boxShadow = "5px 5px 5px rgba(0, 0, 0, 0.5)";
+      containerchat.style.border = "4px solid #cccccc";
+
+      // TITULOS DE LAS CARRERAS
+      var TituloCarrera = document.createElement("h2");
+      TituloCarrera.textContent = "INGENIERIA EN TECNOLOGIAS DE LA INFORMACIÓN";
+      TituloCarrera.style.fontsize = "12px";
+      TituloCarrera.style.fontFamily = "Verdana, Geneva, Tahoma, sans-serif";
+      TituloCarrera.style.textAlign = "center";
+      TituloCarrera.style.padding = "10px";
+      containerchat.appendChild(TituloCarrera);
+
+      //CONTENIDO #1
+      var Contenido1 = document.createElement("h3");
+      Contenido1.textContent = "En esta carrera aprenderas a crear cosas sumamente sorprendentes como por ejemplo este chatbot.";
+      Contenido1.style.fontsize = "8px";
+      Contenido1.style.fontFamily = "sans-serif";
+      Contenido1.style.textAlign = "addtrack";
+      Contenido1.style.padding = "10px";
+      containerchat.appendChild(Contenido1);
+
+      var contenidoimg = document.createElement("img");
+      contenidoimg.src = 'https://pucesd.edu.ec/wp-content/uploads/2024/11/MASCOTA_VIRTUAL.png';
+      //contenidoimg.style.backgroundColor = "blue";
+      contenidoimg.style.width = '90%';
+      contenidoimg.style.height = '50%';
+      contenidoimg.style.borderRadius = "25px";
+      contenidoimg.style.position = "absolute";
+      contenidoimg.style.boxShadow = "5px 5px 5px rgba(0, 0, 0, 5)";
+      contenidoimg.style.right = "30px";
+      containerchat.appendChild(contenidoimg);
+
+      document.body.appendChild(containerchat);
+    });
+  </script>
+
+</body>
+</html>

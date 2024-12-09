@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CHATBOT PRUEBAS</title>
+</head>
+<body>
+
+  <h1>BOTONES</h1>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Crear el contenedor del chat
+      var containerchat = document.createElement("div");
+      containerchat.style.position = "fixed";
+      containerchat.style.width = "500px";
+      containerchat.style.height = "500px";
+      containerchat.style.borderRadius = "35px";
+      containerchat.style.backgroundColor = "white";
+      containerchat.style.boxShadow = "5px 5px 5px rgba(0, 0, 0, 0.5)";
+      containerchat.style.border = "4px solid #cccccc";
+
+      // Crear el botón para enlaces externos
+      var ButtonEnlaceEx = document.createElement("button");
+      ButtonEnlaceEx.style.position = "absolute";
+      ButtonEnlaceEx.style.width = "90%";
+      ButtonEnlaceEx.style.height = "150px";
+      ButtonEnlaceEx.style.borderRadius = "25px";
+      ButtonEnlaceEx.style.backgroundColor = "blue";
+      ButtonEnlaceEx.style.textAlign = "center";
+      ButtonEnlaceEx.style.margin = "25px";
+      ButtonEnlaceEx.style.border = "5px solid rgba(0, 0, 0, 0.5)";
+      ButtonEnlaceEx.style.color = "white";
+      ButtonEnlaceEx.style.fontSize = "24px";
+      ButtonEnlaceEx.textContent = "Esto es un enlace externo";
+      ButtonEnlaceEx.style.cursor = "pointer";
+     // ButtonEnlaceEx.style.padding = "50px";
+
+      // Enlace para abrir en una nueva ventana
+      ButtonEnlaceEx.addEventListener("click", function() {
+        window.open("https://pucesd.edu.ec/", "_blank");
+      });
+      containerchat.appendChild(ButtonEnlaceEx);
+
+      var ButtonEnlaceIn = document.createElement("button");
+      ButtonEnlaceIn.style.position = "absolute";
+      ButtonEnlaceIn.style.width = "90%";
+      ButtonEnlaceIn.style.height = "150px";
+      ButtonEnlaceIn.style.borderRadius = "25px";
+      ButtonEnlaceIn.style.backgroundColor = "orange";
+      ButtonEnlaceIn.style.textAlign = "center";
+      ButtonEnlaceIn.style.margin = "25px";
+      ButtonEnlaceIn.style.border = "5px solid rgba(0, 0, 0, 0.5)";
+      ButtonEnlaceIn.style.color = "white";
+      ButtonEnlaceIn.style.fontSize = "24px";
+      ButtonEnlaceIn.textContent = "Esto es un enlace interno";
+      ButtonEnlaceIn.style.cursor = "pointer";
+      ButtonEnlaceIn.style.padding = "50px";
+
+      ButtonEnlaceIn.addEventListener("click", function() {
+        updatePruebaPrint();
+      });
+
+      function updatePruebaPrint() {
+      PruebaPrint.textContent = "Bienvenido, este es un enlace interno propio del chatbot";
+      PruebaPrint.style.color = "blue";
+      }
+
+      containerchat.appendChild(ButtonEnlaceIn);
+
+      var PruebaPrint = document.createElement("h1");
+      PruebaPrint.style.position = "absolute";
+      containerchat.appendChild(PruebaPrint);
+      document.body.appendChild(containerchat);
+    });
+  </script>
+
+</body>
+</html>
+

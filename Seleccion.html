@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CHATBOT PRUEBAS</title>
+</head>
+<body>
+
+  <h1>SELECCION</h1>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Crear el contenedor del chat
+      var containerchatSele = document.createElement("div");
+      containerchatSele.style.position = "fixed";
+      containerchatSele.style.width = "500px";
+      containerchatSele.style.height = "500px";
+      containerchatSele.style.borderRadius = "35px";
+      containerchatSele.style.backgroundColor = "white";
+      containerchatSele.style.boxShadow = "5px 5px 5px rgba(0, 0, 0, 0.5)";
+      containerchatSele.style.border = "4px solid #cccccc";
+
+
+      // Crear el texto inicial
+      var Select = document.createElement("div");
+      Select.textContent = "Selecciona una de las siguientes opciones:";
+      Select.style.fontSize = "16px";
+      Select.style.marginBottom = "10px";
+      containerchatSele.appendChild(Select);
+
+
+      // Función que maneja las opciones
+      function Option1(value) {
+        switch (value) {
+          case "opcion1":
+            Respuesta.textContent = "Estas en la opcion #1";
+            break;
+          case "opcion2":
+            Respuesta.textContent = "Estas en la opcion #2";
+            break;
+          case "opcion3":
+            Respuesta.textContent = "Estas en la opcion #3";
+            break;
+          case "opcion4":
+            Respuesta.textContent = "Estas en la opcion #4";
+            break;
+          case "opcion5":
+              Respuesta.textContent = "Estas en la opcion #5";
+              break;
+          default:
+            alert("Opción no válida");
+        }
+      }
+
+      // Crear botón Opción 1
+      var Select1 = document.createElement("button");
+      Select1.textContent = "Opción #1";
+      Select1.style.margin ="5px";
+      Select1.style.width = "100px";
+      Select1.style.height = "50px";
+      Select1.style.fontSize = "14px";
+      Select1.style.borderRadius = "35px";
+      Select1.style.backgroundColor = "white";
+      Select1.style.boxShadow = "5px 5px 5px rgba(0, 0, 0, 0.5)";
+      Select1.style.border = "2px solid #cccccc";
+      Select1.addEventListener("click", function () {
+        Option1("opcion1");
+      });
+      containerchatSele.appendChild(Select1);
+
+      // Crear botón Opción 2
+      var Select2 = document.createElement("button");
+      Select2.textContent = "Opción #2";
+      Select2.style.margin ="5px";
+      Select2.style.width = "100px";
+      Select2.style.height = "50px";
+      Select2.style.fontSize = "14px";
+      Select2.style.borderRadius = "35px";
+      Select2.style.backgroundColor = "white";
+      Select2.style.boxShadow = "5px 5px 5px rgba(0, 0, 0, 0.5)";
+      Select2.style.border = "2px solid #cccccc";
+      Select2.addEventListener("click", function () {
+        Option1("opcion2");
+      });
+      containerchatSele.appendChild(Select2);
+
+      // Crear botón Opción 3
+      var Select3 = document.createElement("button");
+      Select3.textContent = "Opción #3";
+      Select3.style.margin ="5px";
+      Select3.style.width = "100px";
+      Select3.style.height = "50px";
+      Select3.style.fontSize = "14px";
+      Select3.style.borderRadius = "35px";
+      Select3.style.backgroundColor = "white";
+      Select3.style.boxShadow = "5px 5px 5px rgba(0, 0, 0, 0.5)";
+      Select3.style.border = "2px solid #cccccc";
+      Select3.addEventListener("click", function () {
+        Option1("opcion3");
+      });
+      containerchatSele.appendChild(Select3);
+
+
+      // Crear botón Opción 4
+      var Select4 = document.createElement("button");
+      Select4.textContent = "Opción #4";
+      Select4.style.margin ="5px";
+      Select4.style.width = "100px";
+      Select4.style.height = "50px";
+      Select4.style.fontSize = "14px";
+      Select4.style.borderRadius = "35px";
+      Select4.style.backgroundColor = "white";
+      Select4.style.boxShadow = "5px 5px 5px rgba(0, 0, 0, 0.5)";
+      Select4.style.border = "2px solid #cccccc";
+      Select4.addEventListener("click", function () {
+        Option1("opcion4");
+      });
+      containerchatSele.appendChild(Select4);
+
+      // Crear botón Opción 5
+      var Select5 = document.createElement("button");
+      Select5.textContent = "Opción #5";
+      Select5.style.margin ="5px";
+      Select5.style.width = "100px";
+      Select5.style.height = "50px";
+      Select5.style.fontSize = "14px";
+      Select5.style.borderRadius = "35px";
+      Select5.style.backgroundColor = "white";
+      Select5.style.boxShadow = "5px 5px 5px rgba(0, 0, 0, 0.5)";
+      Select5.style.border = "2px solid #cccccc";
+      Select5.addEventListener("click", function () {
+        Option1("opcion5");
+      });
+      containerchatSele.appendChild(Select5);
+
+      var Respuesta = document.createElement("div");
+      Respuesta.style.fontSize = "16px";
+      Respuesta.style.margin = "10px";
+      Respuesta.style.marginBottom = "10px";
+      Respuesta.style.color = "blue";
+      containerchatSele.appendChild(Respuesta);
+
+
+      document.body.appendChild(containerchatSele);
+    });
+  </script>
+
+</body>
+</html>
+
